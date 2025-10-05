@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YANGKUUUKUU 😘❤️</title>
+  <!-- Fonts Estetik -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body{
+      margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+      font-family:"Quicksand",sans-serif;background:#0f1724;color:#e6eef8;padding:24px;
+      overflow:hidden;
+    }
+    .card{
+      max-width:800px;background:rgba(255,255,255,0.03);padding:28px;border-radius:18px;
+      text-align:center;box-shadow:0 10px 30px rgba(2,6,23,.6);position:relative;z-index:1;
+    }
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(26px,3.5vw,40px);
+      font-family:"Dancing Script",cursive;
+      color:#ffd1dc;
+      letter-spacing:1px;
+    }
+    p{
+      color:#9fb0c8;
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    /* Galeri foto */
+    .gallery{
+      margin-top:20px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .gallery img{
+      width:140px;
+      height:180px;
+      object-fit:cover;
+      border-radius:14px;
+      box-shadow:0 6px 20px rgba(2,6,23,.6);
+    }
+
+    /* Kutipan Mazmur */
+    .caption-block {
+      margin-top: 14px;
+    }
+    .caption {
+      font-weight: 600;
+      font-size: 15px;
+      font-style: italic;
+      color: #fddde6;
+      margin-bottom: 4px;
+    }
+    .verse {
+      font-weight: 400;
+      font-size: 14px;
+      color: #ffeaf1;
+      position: relative;
+      display: inline-block;
+      padding: 0 12px;
+    }
+    .verse::before,
+    .verse::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 20px;   /* lebih pendek */
+      height: 1px;
+      background: #fddde6;
+    }
+    .verse::before {
+      left: -28px;
+    }
+    .verse::after {
+      right: -28px;
+    }
+
+    audio{display:none}
+    
+    /* Confetti love */
+    .heart{
+      position:fixed;
+      width:16px;height:16px;
+      background:transparent;
+      transform:rotate(45deg);
+      animation: fall 6s linear forwards;
+      opacity:0.85;
+      z-index:0;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:16px;height:16px;
+      border-radius:50%;
+      background:inherit;
+    }
+    .heart::before{left:-8px;}
+    .heart::after{top:-8px;}
+    @keyframes fall{
+      0%{transform:translateY(-10vh) rotate(45deg) scale(0.8);}
+      100%{transform:translateY(110vh) rotate(45deg) scale(1);}
+    }
+
+    /* Popup musik */
+    #musicNotice {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.95);
+      color: #222;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 1000;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, 20px);}
+      to { opacity: 1; transform: translate(-50%, 0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Happy Birthday, mon Cheri ❤️</h1>
+    <p>Distance can't stop me from making you feel loved on your special day</p>
+    <p>❤️❤️❤️❤️❤️❤️❤️</p>
+    
+    <div class="gallery">
+      <img src="foto1.jpeg" alt="Foto 1" onerror="this.src='https://via.placeholder.com/140x180.png?text=Foto1';">
+      <img src="foto3.jpeg" alt="Foto 2" onerror="this.src='https://via.placeholder.com/140x180.png?text=Foto2';">
+      <img src="foto5.jpeg" alt="Foto 3" onerror="this.src='https://via.placeholder.com/140x180.png?text=Foto3';">
+      <img src="foto4.jpeg" alt="Foto 4" onerror="this.src='https://via.placeholder.com/140x180.png?text=Foto4';">
+      <img src="foto2.jpeg" alt="Foto 5" onerror="this.src='https://via.placeholder.com/140x180.png?text=Foto5';">
+    </div>
+
+    <!-- Mazmur -->
+    <div class="caption-block">
+      <div class="caption">Mazmur 20:5</div>
+      <div class="verse">"Kiranya diberikan-Nya kepadamu apa yang kaukehendaki dan dijadikan-Nya berhasil apa yang kaurancangkan"</div>
+    </div>
+    
+    <audio id="audio" autoplay loop>
+      <source src="laguuu.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div id="musicNotice">👉 Klik layar untuk mulai musik 🎶</div>
+
+<script>
+  const colors = ["#ff9aa2","#ffb7b2","#ffdac1","#e2f0cb","#b5ead7","#c7ceea","#f8c8dc","#f6d1e7"];
+  
+  function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    const size = Math.random()*10+10;
+    heart.style.width = size+"px";
+    heart.style.height = size+"px";
+    heart.style.left = Math.random()*100+"vw";
+    heart.style.background = colors[Math.floor(Math.random()*colors.length)];
+    heart.style.animationDuration = (5+Math.random()*3)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},8000);
+  }
+
+  const audio = document.getElementById("audio");
+  const musicNotice = document.getElementById("musicNotice");
+
+  window.addEventListener("load",()=>{
+    setInterval(createHeart, 400);
+
+    audio.muted = false;
+    audio.play().catch(() => {
+      musicNotice.style.display = "block";
+      document.body.addEventListener("click", () => {
+        audio.muted = false;
+        audio.play();
+        musicNotice.style.display = "none";
+      }, { once:true});
+    });
+  });
+</script>
+</body>
+</html>
